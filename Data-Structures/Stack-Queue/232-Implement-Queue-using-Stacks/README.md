@@ -1,5 +1,7 @@
 # 232. Implement Queue using Stacks (Java)
 
+**题目链接：** [LeetCode 232 - Implement Queue using Stacks](https://leetcode.com/problems/implement-queue-using-stacks/)
+
 ## 💡 核心领悟 (Insights)
 - **栈的特性**：后进先出 (LIFO)。
 - **队列特性**：先进先出 (FIFO)。
