@@ -1,0 +1,61 @@
+# 206. Reverse Linked List (Java)
+
+**题目链接：** [LeetCode 206 - Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)
+
+---
+
+## 💡 核心领悟 (Insights)
+- **双指针法 (Iterative)**：这是最直观且空间效率最高的方法。通过 `prev` 和 `curr` 两个指针，在遍历过程中原地修改 `next` 指向。
+- **细节控**：反转链表最容易犯的错是“断开连接”。记住在修改 `curr.next = prev` 之前，必须先用一个临时变量 `nextTemp` 保存原本的下一个节点。
+- **递归思考 (Recursive)**：递归解法非常优雅，它本质上是先“探底”找到最后一个节点，然后在回溯的过程中改变指向。
+
+🎨 核心流程可视化：三指针法
+我们需要三个角色来完成这个动作，缺一不可：
+
+prev (已完成区)：已经转身并搭好肩的人。
+
+curr (当前操作员)：正在转身的那个人。
+
+nextTemp (下一位候补)：防止 curr 转身后找不到后面的人，负责“拉住”后面的队伍。
+
+1. 初始状态
+prev 是空的 (null)。
+
+curr 指向第一个人 (1)。
+
+队伍是：1 -> 2 -> 3 -> 4 -> 5
+
+2. 循环内部的四个动作（每一轮只转一个人）
+假设我们现在处理节点 1：
+
+第一步：拉住后面的人 (Save Next) nextTemp = curr.next;
+
+(节点 2 被拉住了，防止待会节点 1 转身后，后面的 2,3,4,5 跑丢了。)
+
+第二步：转身搭肩 (Reverse) curr.next = prev;
+
+(节点 1 把手从 2 的肩上拿开，转过去搭在 prev（初始是 null）上。)
+
+第三步：身份升级 (Move Prev) prev = curr;
+
+(节点 1 完成了转身，现在他成了“已完成区”的领头人。)
+
+第四步：移动重心 (Move Curr) curr = nextTemp;
+
+(操作员移动到节点 2，准备处理下一个。)
+
+## 🚀 解题代码 (Code - Iterative)
+```java
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+        while (curr != null) {
+            ListNode nextTemp = curr.next; // 1. 暂存后继节点，防止丢失
+            curr.next = prev;              // 2. 反转指向
+            prev = curr;                   // 3. prev 指针前移
+            curr = nextTemp;               // 4. curr 指针前移
+        }
+        return prev;
+    }
+}
