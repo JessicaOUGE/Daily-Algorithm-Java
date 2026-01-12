@@ -11,6 +11,9 @@
   - 否则：右半部分是有序的。
 - **判断去向**：先确定哪一半有序，再判断 `target` 是否在该有序区间内，从而决定缩小哪一边的范围。
 
+- Rethinking Binary Search: Beyond Sorted Arrays.
+- Binary Search is often associated with sorted data, but LeetCode 33 (Search in Rotated Sorted Array) proves its power in partially sorted structures. By identifying which half is monotonically increasing, we can still eliminate half of the search space at each step. This is a great exercise in edge-case handling and logical branching.
+
 ## 🚀 解题代码 (Code - Binary Search)
 ```java
 class Solution {
